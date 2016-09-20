@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="explicitGray">#6D5647</color>
+    <color name="downloadGreen">#33451A</color>
+    <color name="backgroundBrown">#311B0A</color>
+    <color name="titleBrown">#A99281</color>
+    <color name="authorBrown">#6D5647</color>
+</resources>

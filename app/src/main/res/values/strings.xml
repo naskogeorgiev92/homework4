@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Homework 4</string>
+    <string name="three_dots">&#8942;</string>
+    <string name="single_dot">&#8226;</string>
+    <string name="spotify">Spotify</string>
+    <string name="explicit">EXPLICIT</string>
+    <string name="arrow_down">&#9660;</string>
+    <string name="current_battery_percentage" formatted="false">"Current battery percentage is "</string>
+</resources>
