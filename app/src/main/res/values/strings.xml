@@ -6,4 +6,6 @@
     <string name="explicit">EXPLICIT</string>
     <string name="arrow_down">&#9660;</string>
     <string name="current_battery_percentage" formatted="false">"Current battery percentage is "</string>
+    <string name="no_battery_change">Battery level hasn\'t dropped in the last hour.</string>
+    <string name="battery_dropped_with">"Battery has dropped with "</string>
 </resources>
