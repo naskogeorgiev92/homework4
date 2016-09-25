@@ -64,7 +64,7 @@ public class SpotifyAdapter extends RecyclerView.Adapter<SpotifyAdapter.SpotifyV
 
         @Override
         public void onClick(View v) {
-            mListener.getCurrentSelection(v, this.getAdapterPosition());
+            mListener.getCurrentSelection(this.getAdapterPosition());
         }
     }
 }

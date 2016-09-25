@@ -111,7 +111,7 @@ public class SpotifyActivity extends Activity implements View.OnClickListener, I
     }
 
     @Override
-    public void getCurrentSelection(View v, int position) {
+    public void getCurrentSelection(int position) {
         currentSong = data.get(position);
         mService.startPlaying(currentSong.getResourceId());
     }

@@ -11,29 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.softuni.homework4.activities.BatteryActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_register_broadcast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_weight="1"
-            android:onClick="registerForBroadcast"
-            android:text="Register" />
-
-        <Button
-            android:id="@+id/btn_unregister_broadcast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="unregisterForBroadcast"
-            android:text="Unregister" />
-    </LinearLayout>
-
     <TextView
         android:id="@+id/tv_battery_status"
         android:layout_width="match_parent"
