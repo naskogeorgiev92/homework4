@@ -2,7 +2,7 @@ package com.softuni.homework4.services;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Binder;
@@ -15,47 +15,83 @@ import java.io.IOException;
 
 public class MusicService extends Service {
 
-    MediaPlayer player;
-    IBinder binder = new MusicServiceBinder();
-    IServiceCommunication callback;
+    private final String TAG = getClass().getSimpleName();
+    private final IBinder binder = new MusicBinder();
+    int length;
+    private MediaPlayer player;
+    private boolean isPaused = false;
 
     @Override
     public void onCreate() {
-        Log.d("Music Service", "Music Service onCreate called.");
-        player = new MediaPlayer();
-        player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
-        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        Log.d(TAG, "Music Service onCreate called.");
+
     }
 
-    public void startPlaying(String dataSource) {
+    public void startPlaying(int resourceId) {
+        AssetFileDescriptor afd = getApplicationContext().getResources().openRawResourceFd(resourceId);
+
+        if (player != null && player.isPlaying() && !isPaused) {
+            player.stop();
+            player.reset();
+            player.release();
+        }
+
+        if (player != null && isPaused) {
+            player.seekTo(length);
+            player.start();
+            isPaused = false;
+            return;
+        }
+
         try {
-            player.setDataSource(dataSource);
+            player = new MediaPlayer();
+            player.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             player.prepare();
             player.start();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
+        }
+
+    }
+
+    public void pause() {
+        if (player != null && player.isPlaying()) {
+            player.pause();
+            isPaused = true;
+            length = player.getCurrentPosition();
         }
     }
 
-    public void stopPlaying() {
-        player.stop();
+    public void fastForward() {
+        if (player != null) {
+            player.seekTo(player.getCurrentPosition() + 5000);
+        }
+    }
+
+    public void rewind() {
+        if (player != null) {
+            player.seekTo(player.getCurrentPosition() - 5000);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.stop();
+            player.release();
+        }
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d("Music Service", "Music Service onBind called.");
         return binder;
     }
 
-    public void setServiceCallback(IServiceCommunication callback) {
-        this.callback = callback;
-        if(callback != null) {
-            callback.onServiceCustomInvocation();
-        }
-    }
-
-    public class MusicServiceBinder extends Binder {
+    public class MusicBinder extends Binder {
         public MusicService getService() {
             return MusicService.this;
         }

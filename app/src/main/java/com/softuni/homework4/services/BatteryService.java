@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.softuni.homework4.activities.BatteryActivity;
+import com.softuni.homework4.interfaces.IBatteryTracker;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class BatteryService extends Service {
     public static final String ACTION = "com.softuni.homework4.services.BatteryService";
     final String TAG = this.getClass().getSimpleName();
     private BatteryReceiver receiver;
-    private static IServiceCommunication mListener;
+    private static IBatteryTracker mListener;
     private ArrayList<Integer> levels;
 
     static int currentLevel, lastChange;
@@ -95,7 +96,7 @@ public class BatteryService extends Service {
         return lastChange;
     }
 
-    public static void initializeCallback(IServiceCommunication listener) {
+    public static void initializeCallback(IBatteryTracker listener) {
         mListener = listener;
     }
 }

@@ -11,21 +11,22 @@
     tools:context="com.softuni.homework4.activities.MainActivity">
 
     <Button
-        android:text="Task One"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_launch_music_player"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:onClick="launchTaskOneActivity"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/btn_launch_task_one" />
+        android:layout_marginTop="60dp"
+        android:onClick="launchTaskOneActivity"
+        android:text="@string/music_player" />
 
     <Button
-        android:text="Task Two"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_launch_battery_tracer"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_launch_music_player"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:onClick="launchTaskTwoActivity"
-        android:layout_below="@+id/btn_launch_task_one"
-        android:layout_marginTop="65dp"
-        android:id="@+id/btn_launch_task_two" />
+        android:text="@string/battery_tracer" />
 </RelativeLayout>

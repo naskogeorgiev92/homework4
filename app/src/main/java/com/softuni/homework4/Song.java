@@ -5,11 +5,13 @@ public class Song {
     private String mTitle;
     private String mAuthor;
     private String mAlbum;
+    private int resourceId;
 
-    public Song(String mTitle, String mAuthor, String mAlbum) {
+    public Song(String mTitle, String mAuthor, String mAlbum, int resourceId) {
         this.mTitle = mTitle;
         this.mAuthor = mAuthor;
         this.mAlbum = mAlbum;
+        this.resourceId = resourceId;
     }
 
     public String getAlbum() {
@@ -17,23 +19,18 @@ public class Song {
         return mAlbum;
     }
 
-    public void setAlbum(String mAlbum) {
-        this.mAlbum = mAlbum;
-    }
-
     public String getAuthor() {
         return mAuthor;
     }
 
-    public void setAuthor(String mAuthor) {
-        this.mAuthor = mAuthor;
-    }
 
     public String getTitle() {
         return mTitle;
     }
 
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
+
+    public int getResourceId() {
+        return resourceId;
     }
+
 }

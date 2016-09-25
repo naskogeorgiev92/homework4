@@ -7,14 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import com.softuni.homework4.R;
 import com.softuni.homework4.services.BatteryService;
-import com.softuni.homework4.services.IServiceCommunication;
+import com.softuni.homework4.interfaces.IBatteryTracker;
 
-public class BatteryActivity extends AppCompatActivity implements IServiceCommunication {
+public class BatteryActivity extends AppCompatActivity implements IBatteryTracker {
 
     public final static String ACTION = "android.intent.action.BATTERY_CHANGED";
     TextView tvStatus;
@@ -56,21 +55,9 @@ public class BatteryActivity extends AppCompatActivity implements IServiceCommun
         BatteryService.initializeCallback(BatteryActivity.this);
     }
 
-    public void registerForBroadcast(View view) {
-    }
-
-    public void unregisterForBroadcast(View view) {
-    }
-
-
     @Override
     public void onBatteryChangeRequested(int change) {
         batteryChange = change;
         tvStatus.setText(getString(R.string.battery_dropped_with) + batteryChange + "%");
-    }
-
-    @Override
-    public void onServiceCustomInvocation() {
-
     }
 }
